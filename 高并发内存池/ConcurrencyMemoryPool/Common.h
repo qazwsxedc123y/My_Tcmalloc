@@ -332,7 +332,8 @@ class SpanList
 public:
 	SpanList()
 	{
-		_head = new Span();
+		//_head = new Span();
+		_head = _spanPool.New();
 		_head->_next = _head;
 		_head->_prev = _head;
 	}
@@ -390,6 +391,7 @@ public:
 	}
 private:
 	Span* _head;
+	static ObjectPool<Span> _spanPool;
 public:
 	std::mutex _mtx; // 桶锁
 };
